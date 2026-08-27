@@ -4,7 +4,7 @@
 
 ### Reserve. Organize. Jogue.
 
-Sistema mobile para **reserva de quadras esportivas** e **gerenciamento de campeonatos internos** (Etec League) da ETEC Professora Ilza Nascimento Pintus.
+Sistema mobile para **reserva de quadras esportivas** e **gerenciamento de campeonatos internos**.
 
 [![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)](#)
 [![TCC](https://img.shields.io/badge/projeto-TCC%202026-blue)](#)
