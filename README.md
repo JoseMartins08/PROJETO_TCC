@@ -99,11 +99,11 @@ O desenvolvimento do QuadraSync segue a metodologia ágil **Scrum**, adaptada à
 
 <div align="center">
 
-| Papel | Integrante | Responsabilidades |
-|---|---|---|
-| 👑 **Líder / Product Owner (PO)** | **José Martins** | Define prioridades, direciona o produto e representa a visão do projeto |
-| 🧩 **Scrum Master / Dev** | **Gabriel Silva** | Conduz o processo ágil e desenvolve funcionalidades |
-| 📚 **Documentarista / Dev** | **Miguel Faria** | Cuida da documentação técnica/acadêmica e também desenvolve |
+| Papel | Integrante |
+|---|---|
+| 👑 **Líder / Product Owner (PO)** | **José Martins** |
+| 🧩 **Scrum Master / Dev** | **Gabriel Silva** |
+| 📚 **Documentarista / Dev** | **Miguel Faria** |
 
 </div>
 
