@@ -135,6 +135,6 @@ npx expo start
 
 <div align="center">
 
-Feito com 💚 pela equipe **QuadraSync** — TCC 2026
+Feito com 🩵 pela equipe **QuadraSync** — TCC 2026
 
 </div>
