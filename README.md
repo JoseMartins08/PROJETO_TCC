@@ -2,8 +2,6 @@
 
 <img src="./docs/assets/logo-quadrasync.png" alt="Logotipo QuadraSync" width="180"/>
 
-# 🏀 QuadraSync
-
 ### Reserve. Organize. Jogue.
 
 Sistema mobile para **reserva de quadras esportivas** e **gerenciamento de campeonatos internos** (Etec League) da ETEC Professora Ilza Nascimento Pintus.
