@@ -97,7 +97,7 @@ O desenvolvimento do QuadraSync segue a metodologia ágil **Scrum**, adaptada à
 
 ## 👥 Nossa equipe
 
-<div align="center">
+<div>
 
 | Papel | Integrante |
 |---|---|
