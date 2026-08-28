@@ -66,8 +66,10 @@ Este projeto é o **Trabalho de Conclusão de Curso (TCC)** da turma **3°DS-A**
 QuadraSync/
 ├── docs/                  # Documentação do TCC (ABNT, casos de teste, requisitos)
 │   ├── assets/            # Logotipo e imagens do projeto
+│
 ├── backend/                # API e regras de negócio
 │   └── database/          # Scripts e modelagem do banco de dados
+│
 ├── README.md
 └── LICENSE
 ```
