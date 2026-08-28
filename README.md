@@ -66,15 +66,7 @@ Este projeto é o **Trabalho de Conclusão de Curso (TCC)** da turma **3°DS-A**
 QuadraSync/
 ├── docs/                  # Documentação do TCC (ABNT, casos de teste, requisitos)
 │   ├── assets/            # Logotipo e imagens do projeto
-│   └── requisitos/        # Requisitos funcionais (RF) e casos de teste (CT)
-├── mobile/                # Aplicativo mobile (React Native + Expo)
-│   ├── src/
-│   │   ├── screens/       # Telas (login, home, reservas, campeonatos...)
-│   │   ├── components/    # Componentes reutilizáveis
-│   │   └── assets/        # Imagens e ícones do app
-│   └── app.json
 ├── backend/                # API e regras de negócio
-│   ├── src/
 │   └── database/          # Scripts e modelagem do banco de dados
 ├── README.md
 └── LICENSE
@@ -115,17 +107,7 @@ O desenvolvimento do QuadraSync segue a metodologia ágil **Scrum**, adaptada à
 ## 🚀 Como executar o projeto
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/quadrasync.git
-
-# Acesse a pasta do mobile
-cd quadrasync/mobile
-
-# Instale as dependências
-npm install
-
-# Rode o projeto com o Expo
-npx expo start
+# Em breve.
 ```
 
 > ⚠️ Instruções detalhadas do backend serão adicionadas conforme o desenvolvimento avançar.
