@@ -1,0 +1,96 @@
+# QuadraSync — Arquitetura
+
+## 1. Visão geral
+
+O QuadraSync utiliza uma arquitetura separada em frontend, backend e banco de dados.
+
+Fluxo principal:
+
+React Native / Expo
+        ↓
+API REST
+        ↓
+Node.js + Express
+        ↓
+mysql2
+        ↓
+MySQL
+        ↓
+db_QuadraSync
+
+## 2. Frontend
+
+Tecnologias:
+
+- React Native
+- Expo
+- JavaScript
+
+Responsabilidades:
+
+- Interface do usuário
+- Navegação entre telas
+- Formulários
+- Exibição de informações
+- Comunicação com a API
+- Armazenamento temporário de informações necessárias para a sessão
+
+O frontend não deve possuir acesso direto ao MySQL.
+
+## 3. Backend
+
+Tecnologias:
+
+- Node.js
+- Express
+- mysql2
+- dotenv
+- cors
+
+Responsabilidades:
+
+- Disponibilizar a API REST
+- Receber requisições do aplicativo
+- Validar dados
+- Executar regras de negócio
+- Realizar autenticação
+- Comunicar-se com o banco de dados
+- Controlar reservas
+- Gerenciar campeonatos
+- Gerenciar notificações
+
+## 4. Banco de dados
+
+Tecnologia:
+
+MySQL 8.0
+
+Banco:
+
+`db_QuadraSync`
+
+O banco é responsável pela persistência dos dados do sistema.
+
+## 5. Variáveis de ambiente
+
+Informações sensíveis, como a senha do banco de dados, devem permanecer no arquivo `.env` do backend.
+
+O `.env` não deve ser enviado ao GitHub.
+
+O frontend nunca deve receber diretamente as credenciais do banco.
+
+## 6. Estrutura atual do backend
+
+```text
+backend/
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── routes/
+│   ├── middlewares/
+│   └── server.js
+├── .env
+├── .env.example
+├── .gitignore
+├── package.json
+└── package-lock.json

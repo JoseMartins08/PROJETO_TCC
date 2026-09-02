@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "QuadraSync",
+    "slug": "QuadraSync",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/QuadraSync_SemNome-Photoroom.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/QuadraSync_SemNome-Photoroom.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0D47A1"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/QuadraSync_SemNome-Photoroom.png",
+        "backgroundColor": "#0D47A1"
+      }
+    },
+    "web": {
+      "favicon": "./assets/QuadraSync_SemNome-Photoroom.png",
+      "backgroundColor": "#0D47A1"
+    }
+  }
+}

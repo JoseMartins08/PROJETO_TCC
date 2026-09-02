@@ -1,0 +1,180 @@
+# QuadraSync — Contexto do Projeto
+
+## 1. Visão Geral
+
+| Item | Detalhe |
+| :--- | :--- |
+| **Nome** | QuadraSync |
+| **Tipo** | Aplicativo mobile multiplataforma (iOS / Android) |
+| **Contexto** | Trabalho de Conclusão de Curso (TCC) voltado ao ambiente escolar |
+| **Público-alvo** | Alunos e responsáveis pela organização das atividades esportivas da instituição |
+
+---
+
+## 2. Problema & Objetivo
+
+**O Problema**  
+A gestão manual e descentralizada (via planilhas, conversas e anotações) da quadra escolar gera conflitos de horários, opacidade sobre disponibilidades, desorganização geral e dificuldade no acompanhamento de campeonatos.
+
+**O Objetivo**  
+Centralizar e digitalizar o gerenciamento da quadra escolar. O sistema permite consultar horários, efetuar reservas e gerenciar torneios por meio do módulo **ETEC League**.
+
+---
+
+## 3. Escopo & Restrições
+
+* **Escopo:** Exclusivo para o ambiente escolar (não abrange clubes ou estabelecimentos externos).
+* **Capacidade inicial:** Suporte a **1 quadra**, mas com arquitetura desacoplada para permitir expansão futura sem reestruturação do código.
+* **Módulos foco:** Reservas, Calendário, Campeonatos/Equipes/Jogos, Notificações e Gerenciamento de Usuários.
+
+---
+
+## 4. Funcionalidades Principais
+
+* **Usuários:** Cadastro, login, autenticação e controle de permissões.
+* **Reservas:** Consulta de horários, escolha de modalidade (futsal, vôlei, basquete), definição de público/finalidade, confirmação e cancelamento.
+* **Calendário:** Visualização consolidada de disponibilidade, reservas, jogos e eventos.
+* **ETEC League:** Acompanhamento completo de campeonatos, equipes, partidas, placares e estatísticas.
+* **Notificações & Perfil:** Alertas sobre atividades do usuário e gestão de dados da conta.
+
+---
+
+## 5. Telas & Fluxo de Navegação
+
+**Telas Planejadas:**
+* Splash Screen & Boas-vindas
+* Login & Cadastro
+* Tela Inicial (Dashboard)
+* Calendário
+* ETEC League
+* Notificações
+* Perfil
+
+**Fluxo Principal:**
+```text
+[Splash] ──> [Boas-vindas] ──> [Login / Cadastro] ──> [Tela Inicial]
+                                                           │
+   ┌──────────────────┬────────────────────┬───────────────┴───────────────┐
+   ▼                  ▼                    ▼                               ▼
+[Calendário]    [ETEC League]        [Notificações]                    [Perfil]
+
+## 6. Arquitetura & Tecnologia
+
+Tech Stack:
+
+-Frontend: React Native, Expo, JavaScript
+-Backend: Node.js, Express, dotenv, CORS
+-Banco de Dados: MySQL 8.0 (mysql2)
+-Versionamento: Git / GitHub
+
+Diagrama de Arquitetura:
+┌───────────────────────────┐
+│ React Native (Expo)       │
+│ FRONTEND                  │
+└─────────────┬─────────────┘
+              │ HTTP / REST
+              ▼
+┌───────────────────────────┐
+│ Node.js + Express         │
+│ BACKEND                   │
+│ (Routes/Controllers/Mw)   │
+└─────────────┬─────────────┘
+              │ mysql2
+              ▼
+┌───────────────────────────┐
+│ MySQL (db_QuadraSync)     │
+│ BANCO DE DADOS            │
+└───────────────────────────┘
+Regra de Ouro: O frontend nunca acessa o banco de dados diretamente. Toda comunicação é intermediada pelo backend via API.
+
+## 7. Estrutura do Repositório
+
+ProjetoQuadraSync/
+├── frontend/             # Aplicação Mobile (Expo / React Native)
+│   ├── assets/
+│   ├── App.js
+│   └── package.json
+├── backend/              # API Rest (Node.js / Express)
+│   ├── src/
+│   │   ├── config/       # Conexão com DB (database.js)
+│   │   ├── controllers/  # Lógica de negócios
+│   │   ├── routes/       # Definição dos endpoints
+│   │   ├── middlewares/  # Autenticação e validação
+│   │   └── server.js     # Entry point do servidor
+│   ├── .env.example
+│   └── test-connection.js
+├── database/
+│   └── schema.sql        # Modelagem oficial do DB
+└── docs/                 # Documentação do projeto
+    ├── API.md
+    ├── BANCO_DE_DADOS.md
+    ├── CONTEXTO_PROJETO.md
+    └── PROGRESSO.md
+
+## 8. Banco de Dados (db_QuadraSync)
+
+O banco possui 9 tabelas oficiais mantidas em database/schema.sql:
+
+-usuario
+-agenda_quadra
+-reserva
+-evento
+-campeonato
+-equipe
+-campeonato_equipe
+-jogo
+-notificação
+
+Regras do DB:
+
+-Campos da tabela reserva: id_reserva, id_agenda, id_usuario, modalidade (futsal, volei, basquete), quantidade_pessoas (> 0), finalidade, observacao.
+-Regra de Múltiplas Quadras: Atualmente não existe a tabela ou a chave id_quadra. O código deve ser isolado para suportar essa adição futuramente sem quebras, mas não criar a tabela quadra sem autorização prévia.
+
+9. Status Atual do Desenvolvimento
+
+Concluído:
+
+-Planning e prototipação das telas.
+-Setup inicial do projeto Expo e Node.js/Express.
+-Instalação e modelagem do MySQL Server (tabelas criadas).
+-Teste de conexão backend → MySQL.
+-Health Check ativo (GET /api/health).
+-Documentação inicial.
+
+Pendente:
+
+-Sistema de Autenticação (JWT, cadastro, login, hash de senha).
+-Middleware de segurança e rotas protegidas.
+-Integração Frontend <-> Backend.
+-Módulos operacionais: Reservas, Calendário, ETEC League, Notificações e Perfil.
+-Refinamento de UI/UX e testes integrados.
+
+10. Roteiro das Próximas Prioridades
+
+Autenticação (Backend):
+
+Cadastro ──> Hash da Senha (bcrypt) ──> Login ──> Geração de JWT ──> Middleware de Proteção
+
+Integração de Auth (Frontend):
+
+Tela de Login/Cadastro ──> Consumo da API ──> Persistência do Token
+
+Módulo de Reservas:
+
+Calendário ──> Validação de Horários ──> Envio da Reserva ──> Registro no DB
+
+11. Diretrizes para Desenvolvedores e IAs
+Integridade de Dados: Não remover, alterar ou renomear tabelas, colunas e relacionamentos sem prévia consulta a database/schema.sql.
+
+Segurança:
+
+-Nunca salvar senhas em texto puro.
+-Não versionar o arquivo .env nem expor credenciais no código.
+
+Arquitetura Incremental: Implementar ──> Testar ──> Organizar ──> Refatorar.
+
+Consulta Obrigatória antes de alterar código:
+
+-Ler docs/PROGRESSO.md
+-Ler docs/API.md (trabalhos no backend)
+-Ler docs/BANCO_DE_DADOS.md e database/schema.sql (trabalhos no banco)

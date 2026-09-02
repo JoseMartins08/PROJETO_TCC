@@ -1,0 +1,322 @@
+# QuadraSync — Banco de Dados
+
+## 1. Informações gerais
+
+**SGBD:** MySQL 8.0
+
+**Banco de dados:** `db_QuadraSync`
+
+O banco de dados é responsável por armazenar as informações utilizadas pelo sistema QuadraSync.
+
+A estrutura oficial do banco está definida no arquivo:
+
+`database/schema.sql`
+
+Qualquer alteração na estrutura do banco deve ser realizada primeiro no `schema.sql` e posteriormente aplicada ao banco de dados.
+
+---
+
+## 2. Tabelas existentes
+
+O banco de dados possui atualmente 9 tabelas:
+
+1. `usuario`
+2. `agenda_quadra`
+3. `reserva`
+4. `evento`
+5. `campeonato`
+6. `equipe`
+7. `campeonato_equipe`
+8. `jogo`
+9. `notificacao`
+
+---
+
+## 3. Tabela usuario
+
+Armazena os usuários do sistema.
+
+Principais informações:
+
+- Identificador do usuário
+- Nome
+- Email
+- Senha
+- Perfil
+- Curso
+- Turma
+- Status de atividade
+
+A tabela possui os seguintes perfis:
+
+- `aluno`
+- `organizador`
+- `administrador`
+
+O email é único no sistema.
+
+A senha deve ser armazenada utilizando hash seguro, nunca em texto puro.
+
+---
+
+## 4. Tabela agenda_quadra
+
+Armazena os horários de utilização da quadra.
+
+Informações principais:
+
+- Data de utilização
+- Hora de início
+- Hora de término
+- Tipo de utilização
+- Status
+
+Tipos de utilização:
+
+- `reserva`
+- `jogo`
+- `evento`
+
+Status:
+
+- `agendada`
+- `cancelada`
+- `concluida`
+
+Existe uma validação garantindo que a hora de início seja anterior à hora de término.
+
+---
+
+## 5. Tabela reserva
+
+Armazena as reservas realizadas pelos usuários.
+
+Relacionamentos:
+
+- Cada reserva está relacionada a um registro da `agenda_quadra`.
+- Cada reserva está relacionada a um usuário da tabela `usuario`.
+
+Além dos campos originais, foram adicionados campos necessários para o funcionamento da tela de reserva.
+
+### Modalidade
+
+Campo:
+
+`modalidade`
+
+Valores permitidos:
+
+- `futsal`
+- `volei`
+- `basquete`
+
+### Quantidade de pessoas
+
+Campo:
+
+`quantidade_pessoas`
+
+Tipo:
+
+`INT`
+
+Existe uma validação para impedir valores menores ou iguais a zero.
+
+### Campos principais
+
+- `id_reserva`
+- `id_agenda`
+- `id_usuario`
+- `modalidade`
+- `quantidade_pessoas`
+- `finalidade`
+- `observacao`
+
+---
+
+## 6. Tabela evento
+
+Armazena eventos relacionados à utilização da quadra.
+
+Um evento está relacionado a um registro da tabela `agenda_quadra`.
+
+Tipos de evento:
+
+- `reforma`
+- `manutencao`
+- `palestra`
+- `outro`
+
+---
+
+## 7. Tabela campeonato
+
+Armazena os campeonatos da ETEC League.
+
+Informações principais:
+
+- Nome
+- Modalidade
+- Categoria
+- Data de início
+- Data de término
+- Status
+
+Modalidades:
+
+- `futsal`
+- `volei`
+- `basquete`
+
+Categorias:
+
+- `feminino`
+- `masculino`
+- `misto`
+
+Status:
+
+- `planejado`
+- `andamento`
+- `encerrado`
+
+Existe uma validação garantindo que a data de término, quando informada, não seja anterior à data de início.
+
+---
+
+## 8. Tabela equipe
+
+Armazena as equipes participantes dos campeonatos.
+
+Informações principais:
+
+- Identificador da equipe
+- Nome da equipe
+
+---
+
+## 9. Tabela campeonato_equipe
+
+É uma tabela de relacionamento entre campeonatos e equipes.
+
+Ela permite relacionar várias equipes a um campeonato e um campeonato a várias equipes.
+
+Possui uma chave primária composta por:
+
+- `id_campeonato`
+- `id_equipe`
+
+Possui chaves estrangeiras relacionadas às tabelas:
+
+- `campeonato`
+- `equipe`
+
+---
+
+## 10. Tabela jogo
+
+Armazena os jogos realizados ou planejados dentro da ETEC League.
+
+Informações principais:
+
+- Agenda do jogo
+- Campeonato
+- Equipe 1
+- Equipe 2
+- Fase
+- Placar da equipe 1
+- Placar da equipe 2
+- Status
+
+Os dois times de um jogo não podem ser a mesma equipe.
+
+Status possíveis:
+
+- `agendado`
+- `adiado`
+- `em_andamento`
+- `finalizado`
+- `cancelado`
+
+---
+
+## 11. Tabela notificacao
+
+Armazena as notificações enviadas aos usuários.
+
+Informações principais:
+
+- Usuário destinatário
+- Título
+- Mensagem
+- Data de envio
+- Estado de visualização
+
+A notificação possui um campo que indica se já foi visualizada.
+
+---
+
+## 12. Relacionamentos principais
+
+Os principais relacionamentos do banco são:
+
+```text
+usuario
+   │
+   └── reserva
+          │
+          └── agenda_quadra
+
+agenda_quadra
+   ├── reserva
+   ├── evento
+   └── jogo
+
+campeonato
+   │
+   ├── campeonato_equipe
+   │        │
+   │        └── equipe
+   │
+   └── jogo
+          │
+          ├── equipe
+          └── agenda_quadra
+
+usuario
+   │
+   └── notificação
+
+## 13. Regra sobre a quadra
+
+Atualmente o QuadraSync possui uma única quadra.
+Por esse motivo, o banco atual não possui:
+
+-tabela quadra;
+-campo id_quadra.
+
+Essa decisão não significa que o sistema deverá ficar permanentemente limitado a uma única quadra.
+Caso futuramente a instituição possua mais quadras, a estrutura poderá ser expandida de maneira planejada.
+Até essa necessidade existir, não devem ser criadas tabelas ou campos relacionados a múltiplas quadras sem autorização.
+
+## 14. Arquivo oficial do banco
+
+O arquivo:
+
+database/schema.sql
+
+é considerado a fonte oficial da estrutura do banco de dados.
+Nenhuma IA ou desenvolvedor deve assumir que uma tabela ou campo existe sem verificar o schema.sql.
+Alterações no banco devem ser documentadas e testadas antes de serem consideradas concluídas.
+
+## 15. Estado atual
+
+O banco db_QuadraSync já foi criado e está funcionando.
+A conexão entre o backend Node.js e o MySQL foi testada com sucesso.
+
+O backend conseguiu:
+
+-conectar ao MySQL;
+-acessar o banco db_QuadraSync;
+-executar uma consulta de teste;
+-listar as tabelas existentes.

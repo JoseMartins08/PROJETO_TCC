@@ -1,0 +1,87 @@
+# QuadraSync — Regras para Inteligência Artificial
+
+Este arquivo define as regras que qualquer inteligência artificial deve seguir ao trabalhar no projeto QuadraSync.
+
+## Regras gerais
+
+1. Não apagar código funcional sem autorização.
+
+2. Não alterar o banco de dados sem autorização explícita.
+
+3. Não criar ou remover tabelas sem autorização.
+
+4. Não alterar relacionamentos existentes sem autorização.
+
+5. Não remover campos existentes.
+
+6. Não armazenar senhas em texto puro.
+
+7. Nunca colocar senhas, tokens ou outras credenciais reais no GitHub.
+
+8. Nunca colocar credenciais do banco no frontend.
+
+9. O frontend deve acessar o banco exclusivamente através da API.
+
+10. Não criar funcionalidades que não foram solicitadas.
+
+11. Não instalar dependências desnecessárias.
+
+12. Manter a arquitetura atual do projeto.
+
+13. Sempre informar quais arquivos foram criados ou alterados.
+
+14. Testar as funcionalidades implementadas antes de considerá-las concluídas.
+
+15. Não considerar uma funcionalidade concluída apenas porque o código foi escrito.
+
+16. Em caso de erro, investigar a causa antes de modificar partes não relacionadas do projeto.
+
+17. Não substituir tecnologias utilizadas no projeto sem autorização.
+
+18. Não modificar o `database/schema.sql` sem autorização.
+
+19. Atualizar `docs/PROGRESSO.md` quando uma etapa realmente for concluída.
+
+20. Se houver dúvida sobre um requisito, perguntar antes de fazer uma alteração importante.
+
+## Banco de dados
+
+21. O banco oficial se chama `db_QuadraSync`.
+
+22. Atualmente existe somente uma quadra.
+
+23. Não criar uma tabela `quadra` ou `id_quadra` apenas por existir uma única quadra.
+
+24. A arquitetura não deve impedir uma futura expansão para múltiplas quadras.
+
+25. Não remover nenhuma tabela ou campo existente para "simplificar" o sistema.
+
+## Segurança
+
+26. Senhas devem ser armazenadas utilizando hash seguro.
+
+27. Credenciais presentes no `.env` não devem ser exibidas em respostas, logs ou commits.
+
+28. O arquivo `.env` não deve ser enviado ao GitHub.
+
+29. Dados pessoais reais não devem ser utilizados em testes.
+
+## Desenvolvimento
+
+30. Fazer alterações pequenas e testáveis.
+
+31. Antes de alterações grandes, explicar o que será feito.
+
+32. Depois de uma alteração, informar o resultado dos testes.
+
+33. Não avançar várias etapas de desenvolvimento sem autorização.
+
+34. Respeitar a separação:
+
+React Native → API → MySQL
+
+35. O estado real do código deve sempre ser considerado superior a suposições feitas pela IA.
+
+## Regra final
+
+Quando houver conflito entre uma suposição da IA e os arquivos reais do projeto, os arquivos reais devem ser considerados a fonte de verdade.

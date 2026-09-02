@@ -1,0 +1,278 @@
+# QuadraSync — API
+
+## 1. Informações gerais
+
+O backend do QuadraSync utiliza uma API REST para realizar a comunicação entre o aplicativo mobile e o banco de dados.
+
+### Tecnologias utilizadas
+
+- Node.js
+- Express
+- mysql2
+- dotenv
+- cors
+
+O frontend React Native/Expo não acessa o banco de dados diretamente.
+
+A comunicação segue:
+
+```text
+React Native / Expo
+        ↓
+API REST
+        ↓
+Node.js + Express
+        ↓
+MySQL
+
+## 2. Servidor
+
+O servidor utiliza a porta definida pela variável de ambiente PORT.
+
+Atualmente:
+
+PORT=3000
+
+A API é executada localmente durante o desenvolvimento.
+
+## 3. Endpoint de verificação
+GET /api/health
+
+Endpoint utilizado para verificar se:
+
+o servidor Express está funcionando;
+o backend consegue acessar o banco de dados MySQL.
+Resposta de sucesso
+{
+  "success": true,
+  "message": "API QuadraSync funcionando",
+  "database": "connected"
+}
+Resposta em caso de erro
+
+Quando a API não consegue acessar o banco de dados, o endpoint retorna status HTTP 503.
+
+Exemplo:
+
+{
+  "success": false,
+  "message": "API QuadraSync com problemas",
+  "database": "disconnected"
+}
+
+## 4. Autenticação
+
+A autenticação ainda está em desenvolvimento.
+
+POST /api/auth/register
+
+Status: A IMPLEMENTAR
+
+Responsável pelo cadastro de novos usuários.
+
+Deverá:
+
+-receber os dados do usuário;
+-validar os dados recebidos;
+-verificar se o email já está cadastrado;
+-gerar um hash seguro para a senha;
+-armazenar o usuário no banco de dados;
+-retornar uma resposta adequada ao frontend.
+
+A senha nunca deve ser armazenada em texto puro.
+
+POST /api/auth/login
+
+Status: A IMPLEMENTAR
+
+Responsável pelo login do usuário.
+
+Deverá:
+
+-receber email e senha;
+-localizar o usuário;
+-verificar a senha utilizando o hash armazenado;
+-verificar se o usuário está ativo;
+-autenticar o usuário;
+-fornecer um token de autenticação para utilização nas próximas requisições.
+
+A implementação deverá utilizar JWT ou outro mecanismo de autenticação definido posteriormente.
+
+Recuperação de senha
+
+Status: A IMPLEMENTAR
+
+A funcionalidade será utilizada pelo botão:
+
+-Não lembro minha senha
+
+Os detalhes do processo ainda serão definidos.
+
+## 5. Reservas
+Status geral: A IMPLEMENTAR
+
+A API deverá fornecer funcionalidades para gerenciamento das reservas da quadra.
+
+Funcionalidades planejadas:
+
+-consultar disponibilidade;
+-consultar horários disponíveis;
+-criar uma reserva;
+-consultar reservas do usuário;
+-cancelar uma reserva;
+-consultar histórico de reservas.
+
+As reservas deverão considerar informações como:
+
+-data;
+-horário;
+-modalidade;
+-quantidade de pessoas;
+-finalidade;
+-observação;
+-usuário responsável.
+
+A API deverá impedir conflitos de horários.
+
+## 6. Calendário
+Status geral: A IMPLEMENTAR
+
+A API deverá fornecer os dados necessários para a tela de calendário.
+
+Funcionalidades planejadas:
+
+-consultar dias disponíveis;
+-consultar horários disponíveis;
+-consultar horários ocupados;
+-consultar informações de reservas;
+-identificar horários indisponíveis por jogos ou eventos.
+
+## 7. ETEC League
+Status geral: A IMPLEMENTAR
+
+A API deverá fornecer funcionalidades relacionadas ao módulo ETEC League.
+
+Funcionalidades planejadas:
+
+-consultar campeonatos;
+-consultar equipes;
+-consultar jogos;
+-consultar jogos futuros;
+-consultar jogos passados;
+-consultar resultados;
+-consultar estatísticas.
+
+## 8. Campeonatos
+Status: A IMPLEMENTAR
+
+Funcionalidades planejadas:
+
+-criar campeonato;
+-consultar campeonatos;
+-atualizar campeonato;
+-alterar status;
+-consultar equipes participantes.
+
+## 9. Equipes
+Status: A IMPLEMENTAR
+
+Funcionalidades planejadas:
+
+-cadastrar equipe;
+-consultar equipes;
+-associar equipe a campeonato;
+-consultar equipes de determinado campeonato.
+
+## 10. Jogos
+Status: A IMPLEMENTAR
+
+Funcionalidades planejadas:
+
+-cadastrar jogo;
+-consultar jogos;
+-consultar jogos de um campeonato;
+-registrar resultado;
+-atualizar status do jogo;
+-consultar placares.
+
+## 11. Notificações
+Status geral: A IMPLEMENTAR
+
+A API deverá permitir:
+
+-listar notificações do usuário;
+-marcar uma notificação como lida;
+-marcar todas as notificações como lidas;
+-criar notificações quando necessário.
+
+## 12. Perfil
+Status geral: A IMPLEMENTAR
+
+A API deverá fornecer informações do usuário autenticado.
+
+Informações planejadas:
+
+-nome;
+-email;
+-curso;
+-turma;
+-perfil;
+-histórico de reservas.
+
+Também poderão ser implementadas funcionalidades para alteração de informações permitidas.
+
+## 13. Autorização
+
+Após a implementação da autenticação, as rotas que exigem usuário autenticado deverão verificar o token recebido.
+
+Rotas administrativas ou de organizadores deverão possuir verificações de permissão adequadas ao perfil do usuário.
+
+Os perfis existentes no banco são:
+
+-aluno
+-organizador
+-administrador
+
+## 14. Segurança
+
+A API deverá seguir algumas regras básicas de segurança:
+
+-nunca armazenar senhas em texto puro;
+-utilizar hash seguro para senhas;
+-nunca expor a senha do banco de dados;
+-manter credenciais no arquivo .env;
+-não enviar o .env para o GitHub;
+-validar dados recebidos pelo frontend;
+-verificar autenticação nas rotas protegidas;
+-verificar permissões de acordo com o perfil do usuário;
+-utilizar consultas parametrizadas para evitar SQL Injection.
+
+## 15. Estado atual da API
+
+Atualmente, a API possui:
+
+GET /api/health
+
+Esse endpoint já foi implementado e testado com sucesso.
+
+A conexão:
+
+Node.js → MySQL
+
+também já foi testada com sucesso.
+
+As demais funcionalidades ainda estão em desenvolvimento.
+
+## 16. Próxima etapa
+
+A próxima etapa da API é implementar a autenticação.
+
+Ordem planejada:
+
+Cadastro de usuário;
+-Hash seguro da senha;
+-Login;
+-JWT;
+-Middleware de autenticação;
+-Proteção das rotas;
+-Integração com o frontend React Native.

@@ -1,0 +1,224 @@
+# QuadraSync — Progresso do Projeto
+
+## 1. Legenda
+
+- [x] Concluído
+- [ ] A fazer
+
+---
+
+## 2. Planejamento e definição
+
+- [x] Definição do problema
+- [x] Definição do objetivo do QuadraSync
+- [x] Definição do público-alvo
+- [x] Definição das principais funcionalidades
+- [x] Definição das telas do aplicativo
+- [x] Definição inicial do banco de dados
+- [x] Definição das tecnologias do projeto
+
+---
+
+## 3. Frontend
+
+### Protótipo e interface
+
+- [x] Criação inicial do projeto Expo
+- [x] Estrutura inicial do React Native
+- [x] Protótipo da tela Splash
+- [x] Protótipo da tela de Login
+- [x] Protótipo da tela de Cadastro
+- [x] Protótipo da Tela Inicial
+- [x] Protótipo da tela Calendário
+- [x] Protótipo da tela ETEC League
+- [x] Protótipo da tela Notificações
+- [x] Protótipo da tela Perfil
+- [x] Definição inicial do fluxo de navegação
+
+### Funcionalidades
+
+- [ ] Integração do Login com a API
+- [ ] Integração do Cadastro com a API
+- [ ] Controle de sessão do usuário
+- [ ] Autenticação
+- [ ] Calendário funcional
+- [ ] Sistema de reservas
+- [ ] Histórico de reservas
+- [ ] Notificações
+- [ ] Perfil do usuário
+- [ ] ETEC League funcional
+- [ ] Exibição de resultados
+- [ ] Exibição de estatísticas
+
+---
+
+## 4. Backend
+
+### Estrutura
+
+- [x] Criação do projeto Node.js
+- [x] Configuração do Express
+- [x] Configuração do CORS
+- [x] Configuração do dotenv
+- [x] Instalação e configuração do mysql2
+- [x] Organização inicial em controllers
+- [x] Organização inicial em routes
+- [x] Criação da configuração de banco de dados
+
+### API
+
+- [x] Criação do servidor Express
+- [x] Criação da rota `GET /api/health`
+- [x] Teste da API
+- [x] Teste da conexão entre API e MySQL
+
+### Autenticação
+
+- [ ] Cadastro de usuário
+- [ ] Validação dos dados de cadastro
+- [ ] Hash seguro de senha
+- [ ] Login
+- [ ] JWT
+- [ ] Middleware de autenticação
+- [ ] Proteção de rotas
+- [ ] Recuperação de senha
+
+### Reservas
+
+- [ ] Criar reserva
+- [ ] Consultar disponibilidade
+- [ ] Consultar horários
+- [ ] Validar conflitos de horário
+- [ ] Cancelar reserva
+- [ ] Consultar histórico de reservas
+
+### ETEC League
+
+- [ ] Gerenciamento de campeonatos
+- [ ] Gerenciamento de equipes
+- [ ] Gerenciamento de jogos
+- [ ] Registro de resultados
+- [ ] Consulta de jogos futuros
+- [ ] Consulta de jogos passados
+- [ ] Estatísticas
+
+### Notificações
+
+- [ ] Criar notificações
+- [ ] Listar notificações
+- [ ] Marcar notificação como lida
+- [ ] Marcar todas como lidas
+
+### Perfil
+
+- [ ] Consultar dados do usuário
+- [ ] Atualizar dados permitidos
+- [ ] Consultar histórico de reservas
+
+---
+
+## 5. Banco de Dados
+
+- [x] Instalação do MySQL Server 8.0
+- [x] Configuração do MySQL como serviço do Windows
+- [x] Criação do banco `db_QuadraSync`
+- [x] Criação do arquivo `database/schema.sql`
+- [x] Criação das tabelas do banco
+- [x] Criação dos relacionamentos
+- [x] Adição de `modalidade` na tabela `reserva`
+- [x] Adição de `quantidade_pessoas` na tabela `reserva`
+- [x] Adição da validação de quantidade de pessoas
+- [x] Teste de conexão do backend com o banco
+- [x] Verificação das tabelas existentes
+
+### Tabelas existentes
+
+- [x] `usuario`
+- [x] `agenda_quadra`
+- [x] `reserva`
+- [x] `evento`
+- [x] `campeonato`
+- [x] `equipe`
+- [x] `campeonato_equipe`
+- [x] `jogo`
+- [x] `notificacao`
+
+---
+
+## 6. Testes
+
+- [x] Teste de conexão Node.js → MySQL
+- [x] Teste de consulta ao banco
+- [x] Teste da rota `/api/health`
+- [ ] Testes do cadastro
+- [ ] Testes do login
+- [ ] Testes de autenticação
+- [ ] Testes de reservas
+- [ ] Testes de conflitos de horários
+- [ ] Testes do ETEC League
+- [ ] Testes de notificações
+- [ ] Testes de perfil
+- [ ] Testes de segurança
+- [ ] Testes de usabilidade
+- [ ] Testes gerais de integração
+
+---
+
+## 7. Git e GitHub
+
+- [ ] Organização final do repositório
+- [ ] Primeiro commit do projeto completo
+- [ ] Envio do projeto para o GitHub
+- [ ] Configuração do `.gitignore`
+- [ ] Verificação de que o `.env` não será enviado ao GitHub
+- [ ] Histórico de commits organizado
+
+---
+
+## 8. Produção e entrega
+
+- [ ] Finalização das funcionalidades
+- [ ] Revisão do código
+- [ ] Testes finais
+- [ ] Correção de erros
+- [ ] Melhorias de usabilidade
+- [ ] Documentação final
+- [ ] Preparação do projeto para apresentação
+- [ ] Preparação da apresentação do TCC
+
+---
+
+## 9. Estado atual
+
+O projeto já possui:
+
+- estrutura inicial do frontend;
+- protótipos das principais telas;
+- backend Node.js;
+- servidor Express;
+- conexão com MySQL;
+- banco `db_QuadraSync`;
+- estrutura inicial da API;
+- endpoint `GET /api/health`;
+- documentação inicial do projeto.
+
+A conexão entre o backend e o banco de dados foi testada com sucesso.
+
+---
+
+## 10. Próxima etapa
+
+A próxima etapa principal é implementar a autenticação.
+
+### Ordem planejada
+
+1. Cadastro de usuário;
+2. Hash seguro da senha;
+3. Login;
+4. JWT;
+5. Middleware de autenticação;
+6. Proteção das rotas;
+7. Integração do login com o frontend;
+8. Integração do cadastro com o frontend.
+
+Após a autenticação, o próximo grande módulo será o sistema de reservas e calendário.
